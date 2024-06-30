@@ -5,6 +5,5 @@ class Api_constant {
   static const String Diseases = '/erd/api/Diseases/';
 }
 // https:newserver276-production.up.railway.app/erd/api/Diseases/
-
 // static const String baseurl = 'web-production-ba2f6.up.railway.app';
 // static const String register = '/erd/Register/'

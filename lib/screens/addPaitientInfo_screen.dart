@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_application_1/components/button_com.dart';
 import 'package:flutter_application_1/components/textField_com.dart';
 
+import 'Api/api_manager.dart';
 import 'addDiseases.dart';
 import 'addEcortInfo_screen.dart';
 import 'addHistory.dart';
@@ -18,11 +19,11 @@ class _AddPatientInfoState extends State<AddPatientInfo> {
   //const AddEscortInfo({super.key});
   TextEditingController FirstController = TextEditingController();
   TextEditingController LastController = TextEditingController();
-  TextEditingController IdPatientController = TextEditingController();
+  // TextEditingController IdPatientController = TextEditingController();
   TextEditingController EmailController = TextEditingController();
-  TextEditingController passwardController = TextEditingController();
+  // TextEditingController passwardController = TextEditingController();
   TextEditingController PhoneController = TextEditingController();
-  TextEditingController UserNameController = TextEditingController();
+  TextEditingController HandelController = TextEditingController();
   TextEditingController ImageController = TextEditingController();
 
   var formKey = GlobalKey<FormState>();
@@ -99,27 +100,27 @@ class _AddPatientInfoState extends State<AddPatientInfo> {
                 inputType: TextInputType.name,
                 preIcon: Icons.verified,
               ),
-              const SizedBox(
-                height: 10,
-              ),
-              TextFieldComponent(
-                controlleR: IdPatientController,
-                validate: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter your ID ';
-                  }
-                  bool emailValid = RegExp(
-                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                      .hasMatch(value);
-                  if (!emailValid) {
-                    'Enter Valid ID';
-                  }
-                  return null;
-                },
-                labelText: 'PatientID',
-                inputType: TextInputType.name,
-                preIcon: Icons.person,
-              ),
+              // const SizedBox(
+              //   height: 10,
+              // ),
+              // TextFieldComponent(
+              //   controlleR: IdPatientController,
+              //   validate: (value) {
+              //     if (value!.isEmpty) {
+              //       return 'Please enter your ID ';
+              //     }
+              //     bool emailValid = RegExp(
+              //             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+              //         .hasMatch(value);
+              //     if (!emailValid) {
+              //       'Enter Valid ID';
+              //     }
+              //     return null;
+              //   },
+              //   labelText: 'PatientID',
+              //   inputType: TextInputType.name,
+              //   preIcon: Icons.person,
+              // ),
               const SizedBox(
                 height: 10,
               ),
@@ -144,27 +145,27 @@ class _AddPatientInfoState extends State<AddPatientInfo> {
               const SizedBox(
                 height: 10,
               ),
-              TextFieldComponent(
-                controlleR: passwardController,
-                validate: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter your Passward';
-                  } else if (value.length < 8) {
-                    return 'The Password Should be at least 8 Letters';
-                  }
-                  return null;
-                },
-                isPassward: isPassward,
-                labelText: 'Passward',
-                inputType: TextInputType.visiblePassword,
-                preIcon: Icons.lock,
-                sufIcon: isPassward ? Icons.visibility_off : Icons.visibility,
-                sufIconPressed: () {
-                  setState(() {
-                    isPassward = !isPassward;
-                  });
-                },
-              ),
+              // TextFieldComponent(
+              //   controlleR: passwardController,
+              //   validate: (value) {
+              //     if (value!.isEmpty) {
+              //       return 'Please enter your Passward';
+              //     } else if (value.length < 8) {
+              //       return 'The Password Should be at least 8 Letters';
+              //     }
+              //     return null;
+              //   },
+              //   isPassward: isPassward,
+              //   labelText: 'Passward',
+              //   inputType: TextInputType.visiblePassword,
+              //   preIcon: Icons.lock,
+              //   sufIcon: isPassward ? Icons.visibility_off : Icons.visibility,
+              //   sufIconPressed: () {
+              //     setState(() {
+              //       isPassward = !isPassward;
+              //     });
+              //   },
+              // ),
               const SizedBox(
                 height: 10,
               ),
@@ -190,7 +191,7 @@ class _AddPatientInfoState extends State<AddPatientInfo> {
                 height: 10,
               ),
               TextFieldComponent(
-                controlleR: UserNameController,
+                controlleR: HandelController,
                 validate: (value) {
                   if (value!.isEmpty) {
                     return 'Please enter your User Name';
@@ -203,9 +204,9 @@ class _AddPatientInfoState extends State<AddPatientInfo> {
                   }
                   return null;
                 },
-                labelText: 'UserName',
+                labelText: 'Handel',
                 inputType: TextInputType.name,
-                preIcon: Icons.person_add,
+                preIcon: Icons.task,
               ),
               CheckboxListTile(
                 title: Text('Male'),
@@ -277,21 +278,7 @@ class _AddPatientInfoState extends State<AddPatientInfo> {
                   ),
                   ButtonComponent(
                     () {
-                      if (formKey.currentState!.validate()) {
-                        print('Go to next step success');
-                        print(FirstController.text);
-                        print(LastController.text);
-                        print(IdPatientController.text);
-                        print(EmailController.text);
-                        print(passwardController.text);
-                        print(PhoneController.text);
-                        print(UserNameController.text);
-
-                        // Navigator.push(context,
-                        // MaterialPageRoute(builder: ((context) {
-                        // return AddScreen();
-                        // })));
-                      }
+                      addPaitent();
                     },
                     buttonWidth: 165,
                     buttonName: 'Add',
@@ -303,13 +290,26 @@ class _AddPatientInfoState extends State<AddPatientInfo> {
               ),
               TextButton(
                   onPressed: () {
-                    Navigator.pop(context);
-                  },
+                    Navigator.pop(context);},
                   child: Text('Back'))
             ]),
           ),
         ),
       ),
     );
+  }
+
+  void addPaitent() {
+    if (formKey.currentState!.validate()) {
+      Api_manager.registerPatient(
+          FirstController.text,
+          LastController.text,
+          EmailController.text,
+          PhoneController.text,
+          HandelController.text,
+          isFemale,
+          isMale,
+          context);
+    }
   }
 }

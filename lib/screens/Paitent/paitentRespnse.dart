@@ -11,17 +11,16 @@
 /// Female : false
 
 class PaitentRespnse {
-  PaitentRespnse({
-      this.firstName, 
-      this.lasttName, 
-      this.patientID, 
-      this.escortID, 
-      this.diseaseID, 
-      this.email, 
-      this.phoneNumber, 
-      this.handel, 
-      this.profilePicture, 
-      this.male, 
+  PaitentRespnse({required this.firstName,
+      this.lasttName,
+      this.patientID,
+      this.escortID,
+      this.diseaseID,
+      this.email,
+      this.phoneNumber,
+      this.handel,
+      this.profilePicture,
+      this.male,
       this.female,});
 
   PaitentRespnse.fromJson(dynamic json) {
