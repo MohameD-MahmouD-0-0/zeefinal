@@ -24,7 +24,7 @@ class _AddPatientInfoState extends State<AddPatientInfo> {
   // TextEditingController passwardController = TextEditingController();
   TextEditingController PhoneController = TextEditingController();
   TextEditingController HandelController = TextEditingController();
-  TextEditingController ImageController = TextEditingController();
+  // TextEditingController ImageController = TextEditingController();
 
   var formKey = GlobalKey<FormState>();
 
@@ -121,9 +121,9 @@ class _AddPatientInfoState extends State<AddPatientInfo> {
               //   inputType: TextInputType.name,
               //   preIcon: Icons.person,
               // ),
-              const SizedBox(
-                height: 10,
-              ),
+              // const SizedBox(
+              //   height: 10,
+              // ),
               TextFieldComponent(
                 controlleR: EmailController,
                 validate: (value) {
@@ -300,15 +300,15 @@ class _AddPatientInfoState extends State<AddPatientInfo> {
   }
 
   void addPaitent() {
-    if (formKey.currentState!.validate()) {
+    if (formKey.currentState?.validate()==true) {
       Api_manager.registerPatient(
           FirstController.text,
           LastController.text,
           EmailController.text,
           PhoneController.text,
           HandelController.text,
-          isFemale,
           isMale,
+          isFemale,
           context);
     }
   }

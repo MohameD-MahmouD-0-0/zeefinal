@@ -5,25 +5,25 @@
 
 class DiseasesRequest {
   DiseasesRequest({
-      // this.diseasesID,
+      this.diseasesID,
       this.deasesname,
       this.deasesDiscription,
       this.commenSymptoms,});
 
   DiseasesRequest.fromJson(dynamic json) {
-    // diseasesID = json['DiseasesID'];
+    diseasesID = json['DiseasesID'];
     deasesname = json['Deasesname'];
     deasesDiscription = json['DeasesDiscription'];
     commenSymptoms = json['commen_symptoms'];
   }
-  // int? diseasesID;
+  int? diseasesID;
   String? deasesname;
   String? deasesDiscription;
   String? commenSymptoms;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    // map['DiseasesID'] = diseasesID;
+    map['DiseasesID'] = diseasesID;
     map['Deasesname'] = deasesname;
     map['DeasesDiscription'] = deasesDiscription;
     map['commen_symptoms'] = commenSymptoms;

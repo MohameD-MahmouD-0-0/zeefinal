@@ -10,8 +10,8 @@
 /// Male : true
 /// Female : false
 
-class PaitentRespnse {
-  PaitentRespnse({required this.firstName,
+class PaitentResponse {
+  PaitentResponse({required this.firstName,
       this.lasttName,
       this.patientID,
       this.escortID,
@@ -23,7 +23,7 @@ class PaitentRespnse {
       this.male,
       this.female,});
 
-  PaitentRespnse.fromJson(dynamic json) {
+  PaitentResponse.fromJson(dynamic json) {
     firstName = json['FirstName'];
     lasttName = json['LasttName'];
     patientID = json['patientID'];

@@ -4,6 +4,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_application_1/components/button_com.dart';
 import 'package:flutter_application_1/components/textField_com.dart';
 
+import 'Api/api_manager.dart';
+
 class AddEscortInfo extends StatefulWidget {
   @override
   State<AddEscortInfo> createState() => _AddEscortInfoState();
@@ -13,11 +15,14 @@ class _AddEscortInfoState extends State<AddEscortInfo> {
   //const AddEscortInfo({super.key});
   TextEditingController FirstController = TextEditingController();
   TextEditingController LastController = TextEditingController();
-  TextEditingController IdEscortController = TextEditingController();
+
+  // TextEditingController IdEscortController = TextEditingController();
   TextEditingController EmailController = TextEditingController();
-  TextEditingController passwardController = TextEditingController();
+
+  // TextEditingController passwardController = TextEditingController();
   TextEditingController PhoneController = TextEditingController();
-  TextEditingController UserNameController = TextEditingController();
+  TextEditingController HandelController = TextEditingController(text: 'wallpaperflare.com_wallpaper (6).jpg');
+
   TextEditingController ImageController = TextEditingController();
 
   var formKey = GlobalKey<FormState>();
@@ -26,6 +31,7 @@ class _AddEscortInfoState extends State<AddEscortInfo> {
   var isMale = false;
   var isFemale = false;
   Image? imgEscort;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +68,7 @@ class _AddEscortInfoState extends State<AddEscortInfo> {
                     return 'Please enter your User Name';
                   }
                   bool emailValid = RegExp(
-                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                       .hasMatch(value);
                   if (!emailValid) {
                     'Enter Valid First Name';
@@ -83,7 +89,7 @@ class _AddEscortInfoState extends State<AddEscortInfo> {
                     return 'Please enter your User Name';
                   }
                   bool emailValid = RegExp(
-                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                       .hasMatch(value);
                   if (!emailValid) {
                     'Enter Valid Last Name';
@@ -97,24 +103,24 @@ class _AddEscortInfoState extends State<AddEscortInfo> {
               const SizedBox(
                 height: 10,
               ),
-              TextFieldComponent(
-                controlleR: IdEscortController,
-                validate: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter your ID ';
-                  }
-                  bool emailValid = RegExp(
-                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                      .hasMatch(value);
-                  if (!emailValid) {
-                    'Enter Valid ID';
-                  }
-                  return null;
-                },
-                labelText: 'EscortID',
-                inputType: TextInputType.name,
-                preIcon: Icons.person,
-              ),
+              // TextFieldComponent(
+              //   controlleR: IdEscortController,
+              //   validate: (value) {
+              //     if (value!.isEmpty) {
+              //       return 'Please enter your ID ';
+              //     }
+              //     bool emailValid = RegExp(
+              //             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+              //         .hasMatch(value);
+              //     if (!emailValid) {
+              //       'Enter Valid ID';
+              //     }
+              //     return null;
+              //   },
+              //   labelText: 'EscortID',
+              //   inputType: TextInputType.name,
+              //   preIcon: Icons.person,
+              // ),
               const SizedBox(
                 height: 10,
               ),
@@ -125,7 +131,7 @@ class _AddEscortInfoState extends State<AddEscortInfo> {
                     return 'Please enter your Email';
                   }
                   bool emailValid = RegExp(
-                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                       .hasMatch(value);
                   if (!emailValid) {
                     'Enter Valid Email';
@@ -139,27 +145,27 @@ class _AddEscortInfoState extends State<AddEscortInfo> {
               const SizedBox(
                 height: 10,
               ),
-              TextFieldComponent(
-                controlleR: passwardController,
-                validate: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter your Passward';
-                  } else if (value.length < 8) {
-                    return 'The Password Should be at least 8 Letters';
-                  }
-                  return null;
-                },
-                isPassward: isPassward,
-                labelText: 'Passward',
-                inputType: TextInputType.visiblePassword,
-                preIcon: Icons.lock,
-                sufIcon: isPassward ? Icons.visibility_off : Icons.visibility,
-                sufIconPressed: () {
-                  setState(() {
-                    isPassward = !isPassward;
-                  });
-                },
-              ),
+              // TextFieldComponent(
+              //   controlleR: passwardController,
+              //   validate: (value) {
+              //     if (value!.isEmpty) {
+              //       return 'Please enter your Passward';
+              //     } else if (value.length < 8) {
+              //       return 'The Password Should be at least 8 Letters';
+              //     }
+              //     return null;
+              //   },
+              //   isPassward: isPassward,
+              //   labelText: 'Passward',
+              //   inputType: TextInputType.visiblePassword,
+              //   preIcon: Icons.lock,
+              //   sufIcon: isPassward ? Icons.visibility_off : Icons.visibility,
+              //   sufIconPressed: () {
+              //     setState(() {
+              //       isPassward = !isPassward;
+              //     });
+              //   },
+              // ),
               const SizedBox(
                 height: 10,
               ),
@@ -170,7 +176,7 @@ class _AddEscortInfoState extends State<AddEscortInfo> {
                     return 'Please enter your Phone';
                   }
                   bool emailValid = RegExp(
-                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                       .hasMatch(value);
                   if (!emailValid) {
                     'Enter Valid Phone';
@@ -185,20 +191,20 @@ class _AddEscortInfoState extends State<AddEscortInfo> {
                 height: 10,
               ),
               TextFieldComponent(
-                controlleR: UserNameController,
+                controlleR: HandelController,
                 validate: (value) {
                   if (value!.isEmpty) {
-                    return 'Please enter your User Name';
+                    return 'Please enter Handel';
                   }
                   bool emailValid = RegExp(
-                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                       .hasMatch(value);
                   if (!emailValid) {
-                    'Enter Valid User Name';
+                    'Enter Valid Handel';
                   }
                   return null;
                 },
-                labelText: 'UserName',
+                labelText: 'Handel',
                 inputType: TextInputType.name,
                 preIcon: Icons.person_add,
               ),
@@ -224,22 +230,8 @@ class _AddEscortInfoState extends State<AddEscortInfo> {
                 height: 10,
               ),
               ButtonComponent(
-                () {
-                  if (formKey.currentState!.validate()) {
-                    print('Go to next step success');
-                    print(FirstController.text);
-                    print(LastController.text);
-                    print(IdEscortController.text);
-                    print(EmailController.text);
-                    print(passwardController.text);
-                    print(PhoneController.text);
-                    print(UserNameController.text);
-
-                    // Navigator.push(context,
-                    // MaterialPageRoute(builder: ((context) {
-                    // return AddScreen();
-                    // })));
-                  }
+                    () {
+                  addEscort();
                 },
                 buttonName: 'Add',
               ),
@@ -253,5 +245,19 @@ class _AddEscortInfoState extends State<AddEscortInfo> {
         ),
       ),
     );
+  }
+
+  void addEscort() {
+    if (formKey.currentState?.validate() == true) {
+      Api_manager.registerEscort(
+          FirstController.text,
+          LastController.text,
+          EmailController.text,
+          PhoneController.text,
+          HandelController.text,
+          isMale,
+          isFemale,
+          context);
+    }
   }
 }
